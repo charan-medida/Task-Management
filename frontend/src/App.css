@@ -1,0 +1,187 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px; 
+  max-width: 800px;
+  margin: auto;
+  padding: 200px;
+
+}
+.input-field {
+ 
+  max-width: 500px; 
+  margin-bottom: 1rem;
+}
+.title-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+}
+.button-container {
+  position: absolute; 
+  top: 10px; 
+  right: 10px; 
+  z-index: 1000; 
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0; 
+  width: 400px;
+  height: 500px;
+  background: linear-gradient(to top,rgba(0,0,0,0.8)50%,rgba(0,0,0,0.8)50%);
+  position: absolute;
+  bottom: 20px;
+  left: 550px;
+  border-radius: 10px;
+  padding: 50px;
+}
+
+
+
+.form h2{
+  width: 220px;
+  font-family: sans-serif;
+  text-align: center;
+  color: orange;
+  font-size: 22px;
+  
+  
+  margin: 2px;
+  padding: 8px;
+}
+
+.form input{
+  width: 240px;
+  height: 35px;
+  background: transparent;
+  border-bottom: 1px solid orange;
+  border-radius: 5px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  color: white;
+  font-size: 15px;
+  letter-spacing: 1px;
+  margin-top: 30px;
+  font-family: sans-serif;
+  padding-left: 10px;
+}
+.form input:focus{
+  outline: none;
+}
+
+::placeholder{
+  color: white;
+  font-family: Arial;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+.container{
+  margin: 0 auto;
+  text-align: left;
+  width: 300px;
+  display: grid;
+  place-items: center;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+.left-align{
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.h1 {
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.formtable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0; 
+  width: 1000px;
+  height: 480px;
+  position: absolute;
+  bottom: 140px;
+  left:500px;
+  border-radius: 10px;
+  padding: 50px;
+}
+.table-container {
+   /* Adjust the height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+ 
+}
+.table{
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 200%;
+  margin: 20px 0;
+  font-size: 15px;
+  text-align: left;
+  padding: 50px;
+}
+.td{
+  border: 1px solid orange;
+  text-align: left;
+  padding: 12px;
+ 
+}
+.th{
+  border: 1px solid orange;
+  text-align: left;
+  padding: 12px;
+  height: 70px;
+  
+}
+.tr:nth-child(even) {
+  background-color: 'black';
+}
