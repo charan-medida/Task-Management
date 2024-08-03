@@ -93,13 +93,50 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
 @media (max-width: 768px) {
   .button-container {
-    /* Adjust positioning for smaller screens if needed */
     top: 5px; 
     right: 5px; 
   }
+
+  .title-container {
+    padding: 5px;
+  }
+
+  .form {
+    width: 95%; /* Adjust form width for smaller screens */
+  }
+  
+  .form h2 {
+    font-size: 1.25rem; /* Adjusted font size for smaller screens */
+  }
+
+  .form input {
+    font-size: 0.875rem; /* Adjusted font size for smaller screens */
+  }
+
+  .navbar {
+    width: 100%; /* Full width for mobile screens */
+    height: auto;
+  }
+
+  .formtask {
+    width: 90%; /* Adjusted for smaller screens */
+    height: auto; /* Adjusted height */
+    bottom: 20px; /* Adjusted position */
+    left: 5%;
+  }
+
+  .formtable {
+    width: 90%; /* Adjusted for smaller screens */
+    max-width: 100%; /* Full width */
+    left: 5%;
+    bottom: 20px; /* Adjusted position */
+  }
 }
+
+
 
 
 .left-align{
@@ -172,7 +209,6 @@ button{
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   z-index: -1;
 }
 .formtask {
@@ -240,7 +276,7 @@ button{
   max-width: 5000px; 
   height: 480px;
   position: absolute;
-  bottom: 110px;
+  bottom: 100px;
   left:500px;
   border-radius: 10px;
   padding: 20px;
