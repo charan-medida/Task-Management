@@ -1,182 +1,114 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import './App.css';
 import axiosInstance from './interceptor';
 
-export function Task() {
-    const [formData, setFormData] = useState({
-        title: '',
-        description: '',
-        duedate: ''
-    });
-    const navigate = useNavigate();
-    const [fetchData, setFetchData] = useState([]);
+export function Sign() {
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+  });
+  const [formErrors, setFormErrors] = useState({
+    username: '',
+    password: '',
+    error: ''
+  });
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-    const updateFormData = (field, value) => {
-        setFormData(prevData => ({
-            ...prevData,
-            [field]: value
-        }));
-    };
+  const updateFormData = (field, value) => {
+    setFormData(prevData => ({
+      ...prevData,
+      [field]: value
+    }));
+  };
 
-    const [formErrors, setFormErrors] = useState({
-        title: '',
-        description: '',
-        duedate: ''
-    });
-    const[loading,setLoading] = useState(false);
-    const validateForm = () => {
-        let valid = true;
-        const newFormErrors = { ...formErrors };
+  const validateForm = () => {
+    let valid = true;
+    const newFormErrors = { ...formErrors };
 
-        if (formData.title.trim() === '') {
-            newFormErrors.title = "Title is required";
-            valid = false;
+    if (formData.username.trim() === '') {
+      newFormErrors.username = 'Username is required';
+      valid = false;
+    }
+
+    if (formData.password.trim() === '') {
+      newFormErrors.password = 'Password is required';
+      valid = false;
+    }
+
+    setFormErrors(newFormErrors);
+    return valid;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      setLoading(true);
+      setFormErrors({ ...formErrors, error: '' }); 
+      try {
+        const response = await axiosInstance.post('/auth/login', {
+          username: formData.username,
+          password: formData.password
+        });
+        console.log(response);
+        const token = response.data.token;
+        if (token) {
+          localStorage.setItem('token', token);
+          console.log(token);
+          navigate('/task');
+        } else {
+          setFormErrors({ ...formErrors, error: 'Invalid Credentials' });
         }
-        if (formData.description.trim() === '') {
-            newFormErrors.description = "Description is required";
-            valid = false;
-        }
-        if (!formData.duedate) {
-            newFormErrors.duedate = "Due date is required";
-            valid = false;
-        }
-        setFormErrors(newFormErrors);
-        return valid;
-    };
+      } catch (err) {
+        console.error(err);
+        setFormErrors({ ...formErrors, error: 'Invalid Credentials' });
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (validateForm()) {
-            setLoading(true);
-                try {
-                    const result = await axiosInstance.post('task/addtask',formData
-                    );
-                    console.log(result);
-                    fetchUpdatedData();
-                } catch (err) {
-                    console.error('Error in token authentication', err);
-                    setLoading(false);
-                }
-                finally{
-                    setLoading(false);
-                }
-        }
-    };
+  return (
+    <div className="App">
+      <img className="fullscreen-image" src="./images/task.jpg" alt='' />
+      <h1 className="title-container" style={{ color: "orange" }}>Task Management</h1><br /><br />
+      <div className="form">
+        <h2>Login Here</h2>
+        <input
+          type="text"
+          id="username"
+          value={formData.username}
+          onChange={(e) => updateFormData('username', e.target.value)}
+          placeholder="Enter username"
+        />
+        <span style={{ color: 'red' }}>{formErrors.username}</span><br />
+        <input
+          id="password"
+          type="password"
+          value={formData.password}
+          onChange={(e) => updateFormData('password', e.target.value)}
+          placeholder="Enter Password"
+        />
+        <span style={{ color: 'red' }}>{formErrors.password}</span><br /><br />
 
-    const fetchUpdatedData = async () => {
-        try {
-            const response = await axiosInstance.get('/task/retrieve');
-            setFetchData(response.data);
-            console.log(response.data);
-            setFormData({
-                title: '',
-                description: '',
-                duedate: ''
-            });
-        } catch (err) {
-            console.error('Error fetching updated data', err);
-        }
-    };
-    const handleDelete = async (id) => {
-        try {
-            await axiosInstance.delete(`/task/delete/${id}`);
-            fetchUpdatedData();
-        } catch (error) {
-            console.error('Error deleting row:', error);
-        }
-    };
-    const handleStatus = async(id,status) => {
 
-        try{
-            await axiosInstance.put(`/task/update/${id}/${status}`,null);
-            console.log("updated");
-            fetchUpdatedData();
-        }
-        catch{
-            console.log('error hitting');
-        }
-    };
+        <button
+          className="btn btn-success"
+          onClick={handleSubmit}
+          disabled={loading}
+        >
+          {loading ? 'Logging in...' : 'Login'}
+        </button><br />
 
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        navigate('/sign');
-    };
-    useEffect(() => {
-        fetchUpdatedData();
-    }, []);
 
-    
-
-    return (
-        <div className='App'>
-            <div className='button-container'>
-                <button style={{marginLeft:'70em'}} className="btn btn-primary" onClick={() => handleLogout()}> log out</button>  
-            </div>
-              
-            <img className="fullscreen-image" src="./images/task.jpg" alt=''/>
-            <h1 className = "title-container" style={{ color: "orange"}}>Task Management</h1><br /><br />
-
-            <div className='formtask'>
-            <h2>Add Task</h2>
-            <input id="title" type="text" value={formData.title} onChange={(e) => updateFormData("title", e.target.value)}
-                        placeholder='Enter the title'/>
-            <span style={{ color: "red" }}>{formErrors.title}</span>       
-                  
-            <input id="description" type="text" value={formData.description}  onChange={(e) => updateFormData("description", e.target.value)}
-                        placeholder='Enter the description'/>
-            <span style={{ color: "red" }}>{formErrors.description}</span>                 
-                       
-            <Form.Control id="duedate"  type="Date"  value={formData.duedate}  onChange={(e) => updateFormData("duedate", e.target.value)}
-                        placeholder='Enter the due date'/>
-            <span style={{ color: "red" }}>{formErrors.duedate}</span><br/><br/>    
-                      
-            <button className="btn btn-success" onClick={handleSubmit} disabled={loading}>{loading?'Adding':'Add'}</button><br /><br />         
-            
-            </div>
-
-            <div className='formtable'>
-                <div className="table-container">
-                <table className="table">
-                    <thead>
-                        <tr>
-                          
-                            <th className="td">Title</th>
-                            <th className="td">Description</th>
-                            <th className="td">Date</th>
-                            <th className="td">Due Date</th>
-                            <th className="td">Status</th>
-                            <th className="td">Delete</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {Array.isArray(fetchData) && fetchData.length > 0 ? (
-                            fetchData.map((item) => (
-                                <tr key={item.Id}>
-                                    <td className="td">{item.Title}</td>
-                                    <td className="td">{item.Description}</td>
-                                    <td className="td">{item.Date}</td>
-                                    <td className="td">{item.Duedate}</td>
-                                    <td className="td">
-                                        <button className="btn btn-primary" onClick={() => handleStatus(item.Id, item.status)}>{item.status}</button>
-                                    </td>
-                                    <td className="td">
-                                        <button className="btn btn-danger" onClick={() => handleDelete(item.Id)}>Delete</button>
-                                    </td>
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan="6">No tasks found</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-                </div>
-            </div><br />
-           
-        </div>
-    );
+        <Link to='/register'>Don't have an account? Click register</Link><br />
+        {formErrors.error && (
+          <div className="error-message" style={{ color: 'red', marginTop: '10px' }}>
+            {formErrors.error}
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
