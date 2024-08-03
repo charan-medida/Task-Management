@@ -103,7 +103,14 @@
   .title-container {
     padding: 5px;
   }
-
+  .fullscreen-image {
+    /* Adjust styles for mobile screens if necessary */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto; /* Adjust height to maintain aspect ratio */
+    object-fit: cover; /* Ensure the image covers the container */
+  }
   .form {
     width: 95%; /* Adjust form width for smaller screens */
   }
