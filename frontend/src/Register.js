@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import Form from 'react-bootstrap/Form';
 import './App.css';
-//import axios from 'axios';
 import { Link } from 'react-router-dom';
 import axiosInstance  from './interceptor';
 
@@ -20,6 +18,7 @@ export function Register() {
         conformPassword: '',
         error: ''
     });
+
     const navigate = useNavigate();
 
     const updateFormData = (field, value) => {
@@ -90,36 +89,51 @@ export function Register() {
     };
 
     return (
-        <div className="main">
-            <img className="fullscreen-image" src="./images/task.jpg" alt=''/>
-            <h1 className = "title-container" style={{ color: "orange"}}>Task Management</h1><br /><br />
-            <div className="form">
-                <h2>Register Here</h2>
+        <div className="App">
+      <img className="fullscreen-image" src="./images/task.jpg" alt='' />
+      <h1 className="title-container" style={{ color: "orange" }}>Task Management</h1><br /><br />
+      <div className="form">
+        <h2>Register Here</h2>
+        <input
+          type="text"
+          id="username"
+          value={formData.username}
+          onChange={(e) => updateFormData('username', e.target.value)}
+          placeholder="Enter username"
+        />
+        <span style={{ color: 'red' }}>{formErrors.username}</span><br />
+        <input
+          id="email"
+          type="text"
+          value={formData.email}
+          onChange={(e) => updateFormData('email', e.target.value)}
+          placeholder="Enter email"
+        />
+        <span style={{ color: 'red' }}>{formErrors.email}</span><br />
 
-                <input id="username" type="text" value={formData.username}  onChange={(e) => updateFormData('username', e.target.value)} 
-                     placeholder="Enter username"  className="input-field"/>
-                <span style={{ color: 'red' }}>{formErrors.username}</span>
+        <input
+          id="password"
+          type="password"
+          value={formData.password}
+          onChange={(e) => updateFormData('password', e.target.value)}
+          placeholder="Enter password"
+        />
+        <span style={{ color: 'red' }}>{formErrors.password}</span><br />
 
-                <input id="email" type="text" value={formData.email}
-                            onChange={(e) => updateFormData('email', e.target.value)} 
-                            placeholder="Enter email"  className="input-field"/>
-                  <span style={{ color: 'red' }}>{formErrors.email}</span>
+        <input
+          id="conformPassword"
+          type="password"
+          value={formData.conformPassword}
+          onChange={(e) => updateFormData('conformPassword', e.target.value)}
+          placeholder="Enter conformPassword"
+        />
+        <span style={{ color: 'red' }}>{formErrors.conformPassword}</span><br /><br />
+       
 
-                <input id="password" type="password" value={formData.password}
-                            onChange={(e) => updateFormData('password', e.target.value)} 
-                            placeholder="Enter password"  className="input-field"/>
-                    <span style={{ color: 'red' }}>{formErrors.password}</span>
-
-                    <input id="conformPassword"  type="password" value={formData.conformPassword}
-                            onChange={(e) => updateFormData('conformPassword', e.target.value)} 
-                            placeholder="Enter confirm password"  className="input-field"/>
-                    <span style={{ color: 'red' }}>{formErrors.conformPassword}</span><br/>
-
-                    <button className="btn btn-success" onClick={handleRegister}> Register </button><br />
-                    <Link to="/" style={{color:"red"}}>{formErrors.error}</Link>   
-                          
-            </div>
-        </div>
+            <button className="btn btn-success" onClick={handleRegister}> Register </button><br />
+            <Link to="/" style={{color:"red"}}>{formErrors.error}</Link>   
+      </div>
+    </div>
         
     );
 }
