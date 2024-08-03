@@ -11,7 +11,7 @@
 }
 .input-field {
  
-  max-width: 100px; 
+  max-width: 500px; 
   margin-bottom: 1rem;
 }
 
@@ -23,7 +23,7 @@
   padding: 10px;
 }
 .button-container {
-  position: relative; 
+  position: absolute; 
   top: 10px; 
   right: 10px; 
   z-index: 1000; 
@@ -34,7 +34,7 @@
   flex-direction: column;
   align-items: center;
   margin: 20px 0; 
-  width: 100%;
+  width: 150%;
   max-width: 500px; 
   background: linear-gradient(to top,rgba(0,0,0,0.8)50%,rgba(0,0,0,0.8)50%);
   border-radius: 10px;
@@ -95,7 +95,7 @@
 }
 @media (max-width: 768px) {
   .button-container {
-   
+    /* Adjust positioning for smaller screens if needed */
     top: 5px; 
     right: 5px; 
   }
@@ -148,6 +148,89 @@
   }
 }
 
+
+button{
+  padding: 5px;
+  margin: 4px;
+}
+
+.App h1{
+    font-size: 36px;
+    text-align: center;
+    color: black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.navbar{
+  width: 1200px;
+  height: 75px;
+  margin: auto;
+}
+.fullscreen-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+.formtask {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0; 
+  width: 400px;
+  max-width: 500px;
+  height: 500px;
+  background: linear-gradient(to top,rgba(0,0,0,0.8)50%,rgba(0,0,0,0.8)50%);
+  position: absolute;
+  bottom: 70px;
+  left: 100px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+
+.formtask h2{
+  font-family: sans-serif;
+  text-align: center;
+  color: orange;
+  font-size: 22px;
+  margin: 2px;
+  padding: 8px;
+}
+
+.formtask input{
+  width: 100%; 
+  height: 35px;
+  background: transparent;
+  border-bottom: 1px solid orange;
+  border-radius: 5px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  color: white;
+  font-size: 15px;
+  letter-spacing: 1px;
+  margin-top: 30px;
+  font-family: sans-serif;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+.formtask input:focus{
+  outline: none;
+}
+
+
+.btn-primary {
+  background-color: #007bff; /* Primary button color */
+}
+
+.btn-danger {
+  background-color: #dc3545; /* Danger button color */
+}
+
 .formtable {
   display: flex;
   flex-direction: column;
@@ -157,7 +240,7 @@
   max-width: 5000px; 
   height: 480px;
   position: absolute;
-  bottom: 140px;
+  bottom: 110px;
   left:500px;
   border-radius: 10px;
   padding: 20px;
@@ -167,28 +250,24 @@
   overflow-y: auto; /* Enable vertical scrolling */
   height: auto;
 }
+
 .table{
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
-  margin: 20px 0;
-  font-size: 15px;
-  text-align: left;
- 
 }
 .td{
   border: 1px solid orange;
   text-align: left;
-  padding: 12px;
+  padding: 8px;
  
 }
 .th{
   border: 1px solid orange;
   text-align: left;
-  padding: 12px;
-  height: 70px;
+  padding: 8px;
   
-}
+} 
 .tr:nth-child(even) {
   background-color: 'black';
 }
