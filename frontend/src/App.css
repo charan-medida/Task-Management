@@ -80,6 +80,13 @@
   height: 40vmin;
   pointer-events: none;
 }
+.logout-button {
+  position: absolute;
+  top: 10px; /* Distance from the top of the screen */
+  right: 10px; /* Distance from the right side of the screen */
+  z-index: 900; /* Ensure it is above other content */
+ 
+}
 .container{
   margin: 0 auto;
   text-align: left;
@@ -99,7 +106,11 @@
     top: 5px; 
     right: 5px; 
   }
-
+  .logout-button {
+    /* Adjust positioning if needed for smaller screens */
+    top: 5px;
+    right: 5px;
+  }
   .title-container {
     padding: 5px;
   }
