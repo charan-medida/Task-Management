@@ -112,7 +112,7 @@ export function Task() {
     return (
         <div className='main'>
             <div className='button-container'>
-                <button className="btn btn-primary" onClick={() => handleLogout()}> log out</button>  
+               <button style ={{marginLeft:'80em'}} className="btn btn-primary" onClick={() => handleLogout()}> log out</button>   
             </div>
               
             <img className="fullscreen-image" src="./images/task.jpg" alt=''/>
