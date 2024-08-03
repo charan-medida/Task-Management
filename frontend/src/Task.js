@@ -112,7 +112,7 @@ export function Task() {
     return (
         <div className='App'>
             <div className='button-container'>
-                <button style={{marginLeft:'70em'}} className="btn btn-primary" onClick={() => handleLogout()}> log out</button>  
+                <button className="btn btn-primary " onClick={() => handleLogout()}> log out</button>   
             </div>
               
            
