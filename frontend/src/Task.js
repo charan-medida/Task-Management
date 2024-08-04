@@ -115,7 +115,7 @@ export function Task() {
                 <button className="btn btn-primary " onClick={() => handleLogout()}> log out</button>  
             </div>
               
-            <img className="fullscreen-image" src="./images/task.jpg" alt=''/>
+           
             <h1 className = "title-container" style={{ color: "orange"}}>Task Management</h1><br /><br />
 
             <div className='formtask'>
