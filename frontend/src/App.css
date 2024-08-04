@@ -100,24 +100,11 @@
     top: 5px; 
     right: 5px; 
   }
-  .logout-button {
-    /* Adjust positioning if needed for smaller screens */
-    top: 5px;
-    right: 5px;
-  }
+ 
   .title-container {
     padding: 5px;
   }
-  .fullscreen-image {
-    position: absolute; /* Ensure the image is positioned relative to its nearest positioned ancestor */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh; /* Cover the entire viewport height */
-    object-fit: cover; /* Ensure the image covers the container */
-    z-index: -1; /* Place the image behind other content */
-}
-
+  
   .form {
     width: 95%; /* Adjust form width for smaller screens */
   }
