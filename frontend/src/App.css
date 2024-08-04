@@ -80,13 +80,7 @@
   height: 40vmin;
   pointer-events: none;
 }
-.logout-button {
-  position: absolute;
-  top: 10px; /* Distance from the top of the screen */
-  right: 10px; /* Distance from the right side of the screen */
-  z-index: 900; /* Ensure it is above other content */
- 
-}
+
 .container{
   margin: 0 auto;
   text-align: left;
@@ -115,13 +109,15 @@
     padding: 5px;
   }
   .fullscreen-image {
-    /* Adjust styles for mobile screens if necessary */
+    position: absolute; /* Ensure the image is positioned relative to its nearest positioned ancestor */
     top: 0;
     left: 0;
     width: 100%;
-    height: auto; /* Adjust height to maintain aspect ratio */
+    height: 100vh; /* Cover the entire viewport height */
     object-fit: cover; /* Ensure the image covers the container */
-  }
+    z-index: -1; /* Place the image behind other content */
+}
+
   .form {
     width: 95%; /* Adjust form width for smaller screens */
   }
